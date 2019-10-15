@@ -13077,7 +13077,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Prerequisites">Prerequisites<a class="anchor-link" href="#Prerequisites">&#182;</a></h3><p>If you don't already have conda installed, <a href="https://github.com/janelia-flyem/flyemflows/blob/master/docs/flyem-quickstart.md">see here and follow step 0</a></p>
+<h3 id="Prerequisites">Prerequisites<a class="anchor-link" href="#Prerequisites">&#182;</a></h3><p>If you don't already have conda installed, <a href="https://github.com/janelia-flyem/flyemflows/blob/master/docs/flyem-quickstart.md">see here and follow step 0.</a></p>
 <p>Then run the following commands from a cluster node.</p>
 <div class="highlight"><pre><span></span>conda create -n test-dask-image -c conda-forge dask distributed dask-jobqueue z5py jupyterlab matplotlib
 conda activate test-dask-image
@@ -13091,8 +13091,9 @@ git clone https://github.com/dask/dask-image
 python -m pip install --no-deps --ignore-installed .
 <span class="nb">cd</span> ..
 
-<span class="c1"># Start jupyter-lab</span>
-jupyter-lab --ip<span class="o">=</span><span class="s2">&quot;0.0.0.0&quot;</span> --no-browser
+<span class="c1"># Start jupyter-lab and open this notebook</span>
+<span class="c1"># (Click on the link that appears on the console.)</span>
+jupyter-lab --ip<span class="o">=</span><span class="k">$(</span>uname -n<span class="k">)</span> --no-browser dask-image-label.ipynb
 </pre></div>
 
 </div>
@@ -13186,6 +13187,7 @@ jupyter-lab --ip<span class="o">=</span><span class="s2">&quot;0.0.0.0&quot;</sp
 Waiting for 2 workers...
 Waiting for 2 workers...
 Waiting for 2 workers...
+Waiting for 2 workers...
 </pre>
 </div>
 </div>
@@ -13223,7 +13225,7 @@ Waiting for 2 workers...
 <td style="vertical-align: top; border: 0px solid white">
 <h3 style="text-align: left;">Client</h3>
 <ul style="text-align: left; list-style: none; margin: 0; padding: 0;">
-  <li><b>Scheduler: </b>tcp://10.36.111.13:45418</li>
+  <li><b>Scheduler: </b>tcp://10.36.111.13:46307</li>
   <li><b>Dashboard: </b><a href='http://10.36.111.13:8787/status' target='_blank'>http://10.36.111.13:8787/status</a>
 </ul>
 </td>
@@ -13259,7 +13261,7 @@ Waiting for 2 workers...
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fill_sphere</span><span class="p">(</span><span class="n">volume</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">cz</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">cx</span> <span class="o">=</span> <span class="n">center</span>
-    <span class="n">z</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">indices</span><span class="p">(</span><span class="n">volume</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">z</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">indices</span><span class="p">(</span><span class="n">volume</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">z</span><span class="o">-</span><span class="n">cz</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">cy</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">cx</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">volume</span><span class="p">[(</span><span class="n">distances</span> <span class="o">&lt;</span> <span class="n">radius</span><span class="p">)]</span> <span class="o">=</span> <span class="n">label</span>
 
@@ -13439,6 +13441,19 @@ Waiting for 2 workers...
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
     </div>
